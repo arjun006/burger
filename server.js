@@ -8,7 +8,7 @@ app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-var PORT = process.env.PORT || 80;
+app.set('port', process.env.PORT || 80);
 
 var exphbs = require("express-handlebars");
 
@@ -20,6 +20,6 @@ var routes = require("./controllers/burgers_controller");
 app.use('/',routes);
 
 // Start our server so that it can begin listening to client requests.
-app.listen(PORT, function(){
-  console.log('Connected Port: ' + PORT );
+app.listen(app.get('port'), function(){
+  console.log('Connected Port: ' + app.get('port') );
 });
