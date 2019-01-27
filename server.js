@@ -9,7 +9,7 @@ app.use(express.static(process.cwd() + "/public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
-app.set('port', process.env.PORT || 80);
+app.set('PORT', PORT);
 
 var exphbs = require("express-handlebars");
 
@@ -21,6 +21,6 @@ var routes = require("./controllers/burgers_controller");
 app.use('/',routes);
 
 // Start our server so that it can begin listening to client requests.
-app.listen(app.get('port'), function(){
-  console.log('Connected Port: ' + app.get('port') );
+app.listen(app.get('PORT'), function(){
+  console.log('Connected Port: ' + app.get('PORT') );
 });

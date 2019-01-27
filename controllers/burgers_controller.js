@@ -15,37 +15,22 @@ router.get("/", function(req, res) {
   });
 });
 
-router.post("/api/burgers", function(req, res) {
+router.post("/burgers", function(req, res) {
   burger.insertOne([
-    "burger_name", "devoured"
-  ], [
-    req.body.burger_name, req.body.devoured
-  ], function(result) {
-    // Send back the ID of the new quote
-    res.json({ id: result.insertId });
-    console.log(res.json)
-  });
-});
-
-
-router.post("/api/burgers/:id", function(req, res) {
-  burger.insertOne([
-
     "burger_name"
   ], [
     req.body.burger_name
-  ], function(result) {
-    console.log(result);
-    res.render();
+  ], function(data) {
+    res.redirect("/");
   });
 });
 
-router.put("/burgers/:id", function(req, res) {
+router.put("/burgers/", function(req, res) {
   var condition = "id = " + req.params.id;
 
   burger.updateOne({
     devoured: true
-  }, condition, function(result) {
+  }, condition, function(data) {
    res.redirect('/');
   });
 });
