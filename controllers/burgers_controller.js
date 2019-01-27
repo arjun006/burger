@@ -10,6 +10,7 @@ router.get("/", function(req, res) {
     var hbsObject = {
       burgers: data
     };
+    // console.log(hbsObject);
     console.log(hbsObject);
     res.render("index", hbsObject);
   });
@@ -20,17 +21,17 @@ router.post("/burgers", function(req, res) {
     "burger_name"
   ], [
     req.body.burger_name
-  ], function(data) {
+  ], function() {
     res.redirect("/");
   });
 });
 
-router.put("/burgers/", function(req, res) {
+router.put("/burgers/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   burger.updateOne({
-    devoured: true
-  }, condition, function(data) {
+    devoured:req.body.devoured,
+  }, condition, function() {
    res.redirect('/');
   });
 });

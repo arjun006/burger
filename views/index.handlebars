@@ -1,13 +1,13 @@
 <h1>Burgers!</h1>
 
-<div class ="container">
+<div class="container">
   <div class="row">
     <div class="col'md'8">
       <h4>Add a Burger!</h4>
-       <form action="/burgers" method="POST">
-      <input type="text" id="burgerName" name="burger_name" placeholder="Add a Burger!">
-      <button type="submit" class="aaddBurgerBtn">Add to Plate</button>
-    </form>
+      <form action="/burgers" method="POST">
+        <input type="text" id="burgerName" name="burger_name" placeholder="Add a Burger!">
+        <button type="submit" class="aaddBurgerBtn">Add to Plate</button>
+      </form>
 
     </div>
   </div>
@@ -19,8 +19,10 @@
       {{#each burgers}}
       {{#unless this.devoured}}
       <div>
-         <form action="/burgers/{{this.id}}?_ method=PUT" method="POST">
-                <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
+        <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="true">
+          <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
+        </form>
       </div>
       {{/unless}}
       {{/each}}
@@ -29,16 +31,13 @@
     <div class="col-md-6">
       <h5>Burgers you Devoured!</h5>
       {{#each burgers}}
-        {{#if this.devoured}}
-        <div class="devoured">
-          <div>
-            {{this.burger_name}}
-          </div>
-        </div>
-        {{/if}}
+      {{#if this.devoured}}
+      <div class="devoured">
+        {{this.burger_name}}
+      </div>
+      {{/if}}
       {{/each}}
 
     </div>
   </div>
 </div>
-
